@@ -11,8 +11,8 @@
   <img src="capturas/01-reproductor.png" height="260" alt="Reproductor">
   <img src="capturas/02-nube-y-nas.png" height="260" alt="Conexión a nube y NAS">
   <img src="capturas/03-letras.png" height="260" alt="Letras sincronizadas">
-  <img src="capturas/04-radio.png" height="260" alt="Radio online">
   <img src="capturas/05-sin-conexion.png" height="260" alt="Música sin conexión">
+  <img src="capturas/04-radio.png" height="260" alt="Radio online">
 </p>
 
 ## Qué hace
