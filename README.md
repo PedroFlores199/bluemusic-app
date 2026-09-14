@@ -8,11 +8,11 @@
 > porque la app es comercial (suscripción). Aquí explico qué hace y cómo está construida.
 
 <p align="center">
-  <img src="capturas/01-reproductor.png" height="380" alt="Reproductor">
-  <img src="capturas/02-nube-y-nas.png" height="380" alt="Conexión a nube y NAS">
-  <img src="capturas/03-letras.png" height="380" alt="Letras sincronizadas">
-  <img src="capturas/04-android-auto.png" height="380" alt="Android Auto">
-  <img src="capturas/05-reloj.png" height="380" alt="App de reloj">
+  <img src="capturas/01-reproductor.png" height="260" alt="Reproductor">
+  <img src="capturas/02-nube-y-nas.png" height="260" alt="Conexión a nube y NAS">
+  <img src="capturas/03-letras.png" height="260" alt="Letras sincronizadas">
+  <img src="capturas/04-radio.png" height="260" alt="Radio online">
+  <img src="capturas/05-sin-conexion.png" height="260" alt="Música sin conexión">
 </p>
 
 ## Qué hace
