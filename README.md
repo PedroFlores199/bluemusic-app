@@ -1,73 +1,73 @@
-# BlueMusic — música local, de la nube y del NAS
+# BlueMusic — local, cloud and NAS music
 
-> Reproductor de música para Android, iOS y relojes. Publicado en
-> **[Google Play](https://play.google.com/store/apps/details?id=com.bluemusic.app)** y
+> Music player for Android, iOS and smartwatches. Published on
+> **[Google Play](https://play.google.com/store/apps/details?id=com.bluemusic.app)** and
 > **[App Store](https://apps.apple.com/es/app/id6775983788)**.
 >
-> Este repositorio es una **presentación del producto**: el código fuente es privado
-> porque la app es comercial (suscripción). Aquí explico qué hace y cómo está construida.
+> This repository is a **product showcase**: the source code is private because the app is
+> commercial (subscription). Here I explain what it does and how it is built.
 
 <p align="center">
-  <img src="capturas/01-reproductor.png" height="260" alt="Reproductor">
-  <img src="capturas/02-nube-y-nas.png" height="260" alt="Conexión a nube y NAS">
-  <img src="capturas/03-letras.png" height="260" alt="Letras sincronizadas">
-  <img src="capturas/05-sin-conexion.png" height="260" alt="Música sin conexión">
-  <img src="capturas/04-radio.png" height="260" alt="Radio online">
+  <img src="screenshots/01-player.png" height="260" alt="Player">
+  <img src="screenshots/02-cloud-and-nas.png" height="260" alt="Cloud and NAS connection">
+  <img src="screenshots/03-lyrics.png" height="260" alt="Synced lyrics">
+  <img src="screenshots/05-offline.png" height="260" alt="Offline music">
+  <img src="screenshots/04-radio.png" height="260" alt="Online radio">
 </p>
 
-## Qué hace
+## What it does
 
-Reúne en una sola app la música que tienes **en el móvil**, la que guardas **en la nube**
-(Google Drive, OneDrive, Dropbox, Box, pCloud) y la de tu **servidor o NAS**
-(Jellyfin, Plex, Emby, Navidrome y cualquier servidor Subsonic).
+Brings together in a single app the music you have **on your phone**, the music you keep
+**in the cloud** (Google Drive, OneDrive, Dropbox, Box, pCloud), and the music on your
+**server or NAS** (Jellyfin, Plex, Emby, Navidrome and any Subsonic server).
 
-- Reproductor completo: letras sincronizadas, cola editable, temporizador de sueño,
-  colores dinámicos según la carátula, edición de metadatos.
-- Descargas para escuchar sin conexión.
-- Radio online: más de 500 emisoras de 48 países, y búsqueda entre miles.
-- **Android Auto** y **CarPlay**.
-- Apps independientes de reloj: **Wear OS** (con transferencia de canciones para
-  correr sin el móvil) y **watchOS**.
-- Widgets, Live Activities en iOS, 19 idiomas, tema claro y oscuro.
-- **Premium** (suscripción): copia de seguridad y sincronización en la nube de listas,
-  favoritos y ajustes, compatible entre Android e iOS, y listas compartidas en tiempo real.
+- Full player: synced lyrics, editable queue, sleep timer, dynamic colors taken from the
+  album art, metadata editing.
+- Downloads so you can listen offline.
+- Online radio: more than 500 stations from 48 countries, and search across thousands.
+- **Android Auto** and **CarPlay**.
+- Standalone watch apps: **Wear OS** (with song transfer so you can go for a run without
+  your phone) and **watchOS**.
+- Widgets, Live Activities on iOS, 19 languages, light and dark themes.
+- **Premium** (subscription): cloud backup and sync of playlists, favorites and settings,
+  working across Android and iOS, and shared playlists in real time.
 
-Sin anuncios y sin rastreo: la app solo lee tus archivos para reproducirlos.
+No ads and no tracking: the app only reads your files in order to play them.
 
-## Cómo está construida
+## How it is built
 
-| Capa | Tecnología |
+| Layer | Technology |
 |---|---|
 | Android | Kotlin, **Jetpack Compose**, Media3/ExoPlayer, Room |
-| iOS | **SwiftUI nativo**, AVFoundation, WidgetKit |
-| Código compartido | **Kotlin Multiplatform**: un módulo `sharedCore` con la lógica común que iOS consume como framework |
-| Relojes | Wear OS (Compose for Wear) y watchOS (SwiftUI) |
-| Backend | Firebase: Auth, Firestore, Cloud Functions (suscripciones, sincronización, listas compartidas), App Check |
-| Integraciones | APIs REST de Jellyfin, Plex, Emby y Subsonic; OAuth con los proveedores de nube; ShazamKit |
+| iOS | **native SwiftUI**, AVFoundation, WidgetKit |
+| Shared code | **Kotlin Multiplatform**: a `sharedCore` module with the common logic that iOS consumes as a framework |
+| Watches | Wear OS (Compose for Wear) and watchOS (SwiftUI) |
+| Backend | Firebase: Auth, Firestore, Cloud Functions (subscriptions, sync, shared playlists), App Check |
+| Integrations | REST APIs for Jellyfin, Plex, Emby and Subsonic; OAuth with the cloud providers; ShazamKit |
 
-### Decisiones técnicas de las que estoy orgulloso
+### Technical decisions I am proud of
 
-- **Paridad entre plataformas.** La misma app en Compose y en SwiftUI, cuidando que se
-  comporten igual: la lógica vive en Kotlin compartido y cada plataforma pone su UI
-  nativa. Comparo ambas con capturas reales antes de cada versión.
-- **Sincronización en tiempo real sin pisar datos.** Dos dispositivos pueden editar la
-  misma lista sin conexión; al volver, se reconcilian con números de revisión validados
-  en las reglas del servidor y *tombstones* para que un dispositivo desconectado no
-  resucite lo que otro borró.
-- **Tokens que no se guardan en claro.** Los tokens OAuth de los servidores y las nubes
-  se cifran con una clave del **Android Keystore** y **AES/GCM** antes de escribirse.
-  Si el keystore está corrupto o viene de una restauración, la app degrada a «sin sesión
-  de nube» en vez de fallar al arrancar.
-- **Carátulas bajo demanda.** Se piden por API cuando la fila aparece en pantalla, con un
-  barrido miniatura-primero, para que una biblioteca de miles de canciones no cargue
-  imágenes que nadie va a ver.
+- **Parity between platforms.** The same app in Compose and in SwiftUI, making sure both
+  behave the same way: the logic lives in shared Kotlin and each platform provides its own
+  native UI. I compare the two with real screenshots before every release.
+- **Real-time sync without overwriting data.** Two devices can edit the same playlist
+  offline; when they come back, they reconcile using revision numbers validated in the
+  server rules and *tombstones*, so a device that was disconnected does not bring back what
+  another one deleted.
+- **Tokens that are not stored in plain text.** The OAuth tokens for the servers and the
+  clouds are encrypted with a key from the **Android Keystore** and **AES/GCM** before they
+  are written. If the keystore is corrupt or comes from a restore, the app degrades to "no
+  cloud session" instead of failing at startup.
+- **Album art on demand.** It is requested from the API when the row shows up on screen,
+  with a thumbnail-first pass, so a library of thousands of songs does not load images
+  nobody is going to see.
 
-## Publicación
+## Publishing
 
-Dos tiendas, revisiones de Apple y Google superadas, política de privacidad,
-suscripciones verificadas en servidor, capturas y fichas en varios idiomas. Y el
-mantenimiento que viene después: fallos en producción, migraciones de datos de usuarios
-ya instalados y versiones nuevas cada pocas semanas.
+Two stores, Apple and Google reviews passed, a privacy policy, server-verified
+subscriptions, screenshots and store listings in several languages. And the maintenance
+that comes afterwards: production bugs, data migrations for users who already have it
+installed, and new releases every few weeks.
 
 ---
 
