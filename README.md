@@ -1,4 +1,4 @@
-# BlueMusic — local, cloud and NAS music
+# BlueMusic — local, cloud and server music
 
 > Music player for Android, iOS and smartwatches. Published on
 > **[Google Play](https://play.google.com/store/apps/details?id=com.bluemusic.app)** and
