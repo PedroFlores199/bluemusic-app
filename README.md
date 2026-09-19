@@ -7,22 +7,12 @@
 > This repository is a **product showcase**: the source code is private because the app is
 > commercial (subscription). Here I explain what it does and how it is built.
 
-<p align="center"><b>iOS</b></p>
 <p align="center">
-  <img src="screenshots/ios/01-player.png" height="260" alt="Player on iOS">
-  <img src="screenshots/ios/02-cloud-and-nas.png" height="260" alt="Cloud and NAS connection on iOS">
-  <img src="screenshots/ios/03-lyrics.png" height="260" alt="Synced lyrics on iOS">
-  <img src="screenshots/ios/05-offline.png" height="260" alt="Offline music on iOS">
-  <img src="screenshots/ios/04-radio.png" height="260" alt="Online radio on iOS">
-</p>
-
-<p align="center"><b>Android</b></p>
-<p align="center">
-  <img src="screenshots/android/01-player.png" height="260" alt="Player on Android">
-  <img src="screenshots/android/02-cloud-and-nas.png" height="260" alt="Cloud and NAS connection on Android">
-  <img src="screenshots/android/03-lyrics.png" height="260" alt="Synced lyrics on Android">
-  <img src="screenshots/android/05-offline.png" height="260" alt="Offline music on Android">
-  <img src="screenshots/android/04-radio.png" height="260" alt="Online radio on Android">
+  <img src="screenshots/01-player.png" height="260" alt="Player">
+  <img src="screenshots/02-cloud-and-nas.png" height="260" alt="Cloud and NAS connection">
+  <img src="screenshots/03-lyrics.png" height="260" alt="Synced lyrics">
+  <img src="screenshots/05-offline.png" height="260" alt="Offline music">
+  <img src="screenshots/04-radio.png" height="260" alt="Online radio">
 </p>
 
 ## What it does
